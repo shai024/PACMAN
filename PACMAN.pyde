@@ -2,21 +2,25 @@ add_library('minim')
 minim = Minim(this)
 
 def setup():
-    player = minim.loadFile("Super Mario Bros. Soundtrack (1) copy.mp3")
+    player = minim.loadFile("Super Mario Bros. Soundtrack (1).mp3")
     player.play()
     size(700,700) 
-
-def draw():
-    pass
-    background(0,0,0)
-    x = 0
-    y = 0
+    
+    x = 35
+    y = 35
+    a = 35
+    b = 80
     global x
     global y
+    global a
+    global b
+
+def draw():
+    background(0,0,0)
     
     gameBoard()
-    ghost(255,0,0,x+35,y+35)
-    pacMan()
+    ghost(255,0,0,a,b)
+    pacMan(x,y)
     
     
 def gameBoard():
@@ -184,16 +188,16 @@ def gameBoard():
     line(570,360,570,200)
 
 
-def ghost(r,g,b,x,y):
+def ghost(r,g,bl,a,b):
     noStroke()
-    fill(r,g,b)
-    ellipse(x,y,35,35)
+    fill(r,g,bl)
+    ellipse(a,b,35,35)
     fill(0)
-    triangle(x,y+5,x-5,y+20,x+5,y+20)
-    triangle(x+10,y+3,x+5,y+20,x+20,y+20)
-    triangle(x-10,y+3,x-20,y+20,x-5,y+20)
-    ellipse(x-7,y-2,5,5)
-    ellipse(x+7,y-2,5,5)
+    triangle(a,b+5,a-5,b+20,a+5,b+20)
+    triangle(a+10,b+3,a+5,b+20,a+20,b+20)
+    triangle(a-10,b+3,a-20,b+20,a-5,b+20)
+    ellipse(a-7,b-2,5,5)
+    ellipse(a+7,b-2,5,5)
     
 def peach(x,y):
     ellipse(x,y,8,8)
@@ -203,28 +207,61 @@ def Bigpeach(x,y):
     ellipse(x,y,15,15)
     fill(255,204,153)
     
-def pacMan():
+def pacMan(x,y):
     fill(0,255,0)
+    ellipse(x,y,40,40)
+    fill(0,0,0)
+    
+def keyPressed():
+    frameRate(15)
     global x
     global y
-    ellipse(x+35,y+70,40,40)
-    fill(0,0,0)
-    #triangle(260l x,255+global y,270+global x,240+global y,270+global x,265+global y)
     
-    def keyPressed():
-        global x
-        global y
+    left = True
+    right = True
+    down = True
+    up = True
     
-        if keyCode == UP:
-            y = y-1
-    
-        if keyCode == DOWN:
-            y = y+1
+    # DOWN BOUNDARIES
+    if y == 35 and ((x > 35 and x < 275) or (x > 275 and x < 345) or (x > 345 and x <= 665)):
+        down = False
+    if y == 105 and ((x >= 105  and x < 135) or (x > 135 and x <= 275) or (x >= 320 and x < 565) or (x > 565 and x <= 595)): 
+        down = False
+    if y == 175 and ((x == 35) or (x > 75 and x < 225) or (x > 225 and x < 375) or (x > 375 and x < 525) or (x > 525 and x < 595) or (x > 595)):
+        down = False
+    if y == 245 and ((x > 145 and x < 225) or (x > 295 and x < 375) or (x > 445 and x < 525)):
+        down = False
+    if y == 315 and ((x >= 145 and x < 225) or (x > 225 and x <= 305) or (x > 375 and x <= 455)):
+        down = False 
+    if y == 385 and ((x > 35  and x < 175) or (x > 175 and x < 315) or (x > 315 and x < 385) or (x > 385 and x < 525) or (x > 525 and x <665)): 
+        down = False
+    if y == 455 and ((x >= 105  and x < 175) or (x > 525 and x < 595)): 
+        down = False
+    if y == 525 and ((x > 35  and x < 105) or (x > 175 and x < 315) or (x > 385 and x < 525) or (x > 595 and x < 665)): 
+        down = False
+    if y == 595 and ((x >= 105  and x < 175) or (x > 525 and x < 595)): 
+        down = False
+    if y == 665:
+        down = False
         
-        if keyCode == LEFT:
-            x = x-1
         
-        if keyCode == RIGHT:
-            x = x+1
+        
+        
+    if keyCode == UP and up == True:
+        y = y-10
+        triangle(x,y,x+20,y-20,x-20,y-20)
+        print (" Y = ") + str(y)
+    if keyCode == DOWN and down == True:
+        y = y+10
+        triangle(x,y,x-20,y+20,x+20,y+20)
+        print (" Y = ") + str(y)
+    if keyCode == LEFT and left == True:
+        x = x-10
+        triangle(x,y,x-20,y+20,x-20,y-20)
+        print (" X = ") + str(x)
+    if keyCode == RIGHT and right == True:
+        x = x+10
+        triangle(x,y,x+20,y+20,x+20,y-20)
+        print (" X = ") + str(x)
 
-    
+
