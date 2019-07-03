@@ -223,9 +223,9 @@ def keyPressed():
     up = True
     
     # DOWN BOUNDARIES
-    if y == 35 and ((x > 35 and x < 275) or (x > 275 and x < 345) or (x > 345 and x <= 665)):
+    if y == 35 and ((x > 35 and x < 275) or (x > 275 and x < 345) or (x > 345 and x < 665)):
         down = False
-    if y == 105 and ((x >= 105  and x < 135) or (x > 135 and x <= 275) or (x >= 320 and x < 565) or (x > 565 and x <= 595)): 
+    if y == 105 and ((x >= 105  and x < 135) or (x > 135 and x <= 275) or (x >= 320 and x < 565) or (x > 565 and x < 595)): 
         down = False
     if y == 175 and ((x == 35) or (x > 75 and x < 225) or (x > 225 and x < 375) or (x > 375 and x < 525) or (x > 525 and x < 595) or (x > 595)):
         down = False
@@ -235,7 +235,7 @@ def keyPressed():
         down = False 
     if y == 385 and ((x > 35  and x < 175) or (x > 175 and x < 315) or (x > 315 and x < 385) or (x > 385 and x < 525) or (x > 525 and x <665)): 
         down = False
-    if y == 455 and ((x >= 105  and x < 175) or (x > 525 and x < 595)): 
+    if y == 455 and ((x > 105  and x < 175) or (x > 525 and x < 595)): 
         down = False
     if y == 525 and ((x > 35  and x < 105) or (x > 175 and x < 315) or (x > 385 and x < 525) or (x > 595 and x < 665)): 
         down = False
@@ -247,18 +247,96 @@ def keyPressed():
     # UP BOUNDARIES
     if y == 35:
         up = False
-    if y == 105 and ((x >= 105 and x < 275 ) or (x > 345 and x >= 595)):
+    if y == 105 and ((x >= 105 and x < 275 ) or (x > 345 and x < 595)):
         up = False
-   if y == 175 and ((x > 35 and x < 135) or (x > 135 and x < 565) or (x > 565 and x <665)):
+    if y == 175 and ((x > 35 and x < 135) or (x > 135 and x < 565) or (x > 565 and x < 665)):
        up = False
+    if y == 245 and ((x >= 145 and x < 225) or (x >= 295 and x < 375) or (x >= 445 and x <525)):
+       up = False
+    if y == 315 and ((x > 145 and x < 225) or (x > 225 and x <= 305) or (x > 375 and x <455)):
+       up = False
+    if y == 385 and ((x == 35) or (x > 75 and x < 225) or (x > 225 and x < 375) or (x > 375 and x <525) or (x > 525 and x < 595) or (x > 595 and x < 665)):
+       up = False
+    if y == 455 and ((x >= 105 and x < 175) or (x > 525 and x <= 595)):
+       up = False
+    if y == 525 and ((x > 35 and x < 105) or (x > 105 and x < 175) or (x > 175 and x < 315) or (x > 315 and x < 385) or (x > 385 and x < 525) or (x > 525 and x < 595) or (x > 595 and x < 665)):
+       up = False
+    if y == 595 and ((x > 105 and x < 175) or (x > 525 and x < 595)):
+       up = False
+    if y == 665 and ((x > 35 and x < 175) or (x > 175 and x < 315) or (x > 315 and x < 385) or (x > 385 and x < 525) or (x > 525 and x < 665)):
+       up = False
+       
+    #LEFT BOUNDARIES
+    if x == 35:
+       left = False
+    if x == 75 and (y > 175 and y < 385):
+       left = False
+    if x == 105 and ((y == 105) or (y >= 455 and y < 525) or (y == 595)):
+       left = False
+    if x == 135 and (y > 105 and y < 175):
+       left = False
+    if x == 145 and (y >= 245 and y <= 315):
+       left = False
+    if x == 175 and ((y > 385 and y < 455) or (y > 455 and y < 595) or (y > 595 and y < 665)):
+       left = False
+    if x == 225 and ((y > 175 and y < 245) or (y > 245 and y < 315) or (y > 315 and y < 385)):
+       left = False
+    if x == 275 and (y > 35 and y < 105):
+       left = False
+    if x == 295 and (y == 245):
+       left = False
+    if x == 315 and ((y > 385 and y < 525) or (y > 525 and y < 665)):
+       left = False
+    if x == 345 and (y > 35 and y < 105):
+       left = False
+    if x == 375 and ((y > 175 and y < 245) or (y > 245 and y < 385)):
+       left = False
+    if x == 385 and ((y > 385 and y < 665)):
+       left = False
+    if x == 525 and ((y > 175 and y < 245) or (y > 245 and y < 385) or (y > 385 and y < 525) or (y > 525 and y < 665)):
+       left = False
+    if x == 565 and ((y > 105 and y < 175)):
+       left = False
+    if x == 595 and ((y > 175 and y < 385) or (y > 455 and y < 595)):
+       left = False
+    if x == 665 and ((y > 35 and y < 175) or (y > 385 and y < 525) or (y > 525 and y < 665)):
+       left = False
     
+    #RIGHT BOUNDARIES
+    if x == 35 and ((y > 35 and y < 175) or (y > 385 and y < 525) or (y > 525 and y < 665)):
+        right = False
+    if x == 75 and (y > 175 and y < 385):
+        right = False
+    if x == 105 and (y > 455 and y < 595):
+        right = False
+    if x == 135 and (y > 105 and y < 175):
+        right = False
+    if x == 145 and (y > 245 and y < 315):
+        right = False
+    if x == 175 and ((y > 385 and y < 525) or (y > 525 and y < 665)):
+        right = False
+    if x == 225 and ((y > 175 and y < 315) or (y > 315 and y <385)):
+        right = False
+    if x == 275 and (y > 35 and y <= 105):
+        right = False
+    if x == 315 and (y > 385 and y < 665):
+        right = False
+    if x == 345 and (y > 35 and y < 105):
+        right = False
+    if x == 375 and ((y > 175 and y < 315) or (x > 315 and y < 385)) :
+        right = False
+    if x == 385 and ((y > 385 and y < 525) or (y > 525 and y < 665)):
+        right = False
+    if x == 525 and ((y > 175 and y < 385) or (y > 385 and y < 455) or (y > 455 and y <595) or (y > 595 and y < 665)) :
+        right = False
+    if x == 565 and (y > 105 and y < 175):
+        right = False
+    if x == 595 and ((y == 105) or (y > 175 and y < 385) or (y >= 455 and y < 525) or (y > 525 and y <= 595)):
+        right = False
+    if x == 665:
+        right = False
+        
             
-    
-    
-        
-        
-        
-        
     if keyCode == UP and up == True:
         y = y-10
         triangle(x,y,x+20,y-20,x-20,y-20)
@@ -275,4 +353,3 @@ def keyPressed():
         x = x+10
         triangle(x,y,x+20,y+20,x+20,y-20)
         print (" X = ") + str(x)
-
