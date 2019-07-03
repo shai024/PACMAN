@@ -243,6 +243,18 @@ def keyPressed():
         down = False
     if y == 665:
         down = False
+    
+    # UP BOUNDARIES
+    if y == 35:
+        up = False
+    if y == 105 and ((x >= 105 and x < 275 ) or (x > 345 and x >= 595)):
+        up = False
+   if y == 175 and ((x > 35 and x < 135) or (x > 135 and x < 565) or (x > 565 and x <665)):
+       up = False
+    
+            
+    
+    
         
         
         
@@ -263,5 +275,4 @@ def keyPressed():
         x = x+10
         triangle(x,y,x+20,y+20,x+20,y-20)
         print (" X = ") + str(x)
-
 
