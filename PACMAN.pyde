@@ -71,10 +71,11 @@ def setup():
         updatedict(530,d)
         d=d+35
         
-    ghosts = [{"a":35, "b":35, "direction":"right", "r":255, "g":0, "bl":0},
+    ghosts = [{"a":355, "b":385, "direction":"right", "r":255, "g":0, "bl":0},
               {"a":35, "b":665, "direction":"right", "r":0, "g":0, "bl":255},
               {"a":665, "b":665, "direction":"right", "r":0, "g":255, "bl":255},
-            
+              {"a":665, "b":35, "direction":"right", "r":255, "g":0, "bl":255}]
+                      
     global ghosts
     
 
@@ -347,7 +348,7 @@ def keyPressed():
 
 def getMoves(x,y): #produces a list of possible moves based on PAC-MAN's position. 
     
-    moves = []
+    movesGhost = []
     
     left = True
     right = True
@@ -459,6 +460,8 @@ def getMoves(x,y): #produces a list of possible moves based on PAC-MAN's positio
         right = False
     if x == 385 and ((y > 385 and y < 525) or (y > 525 and y < 665)):
         right = False
+    if x == 455 and (y == 315):
+        right = False
     if x == 525 and ((y > 175 and y < 385) or (y > 385 and y < 455) or (y > 455 and y <595) or (y > 595 and y < 665)) :
         right = False
     if x == 565 and (y > 105 and y < 175):
@@ -469,15 +472,15 @@ def getMoves(x,y): #produces a list of possible moves based on PAC-MAN's positio
         right = False
     
     if left == True:
-        moves.append("left")
+        movesGhost.append("left")
     if right == True:
-        moves.append("right")
+        movesGhost.append("right")
     if up == True:
-        moves.append("up")
+        movesGhost.append("up")
     if down == True:
-        moves.append("down")
+        movesGhost.append("down")
         
-    return moves
+    return movesGhost
 
 
 
@@ -596,6 +599,8 @@ def getMovesGhost(a,b): #produces a list of possible moves based on the position
         right = False
     if a == 385 and ((b > 385 and b < 525) or (b > 525 and b < 665)):
         right = False
+    if a == 455 and (b == 315):
+        right = False
     if a == 525 and ((b > 175 and b < 385) or (b > 385 and b < 455) or (b > 455 and b <595) or (b > 595 and b < 665)) :
         right = False
     if a == 565 and (b > 105 and b < 175):
@@ -615,7 +620,6 @@ def getMovesGhost(a,b): #produces a list of possible moves based on the position
         movesGhost.append("down")
         
     return movesGhost
-    print movesGhost
 
 def atOpening(a,b): 
     #Determines whether a ghost is at an opening. 
@@ -623,17 +627,19 @@ def atOpening(a,b):
     
     movesGhost = getMoves(a,b)
     if len(movesGhost) > 2:  
-        return  True
+        return True
     else:
         return False
     
 def getNextDirection(character): 
     #randomly selects a new direction for the ghost to travel in from the list of possible moves. 
-    movesGhost = getMoves(character["a"],character["b"])
+    
+    movesGhost = getMovesGhost(character["a"],character["b"])
     if atOpening(character["a"],character["b"]) == True: #selects new direction 
         nextdirection = movesGhost[int(random(0,len(movesGhost)))]
         character["direction"] = nextdirection
         return nextdirection 
+    
     elif atOpening(character["a"],character["b"]) == False:
         nextdirection = character["direction"]
         if nextdirection in movesGhost: #continues in last used direction
